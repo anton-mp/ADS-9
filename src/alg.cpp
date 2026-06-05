@@ -3,6 +3,7 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include <vector>
 #include "tree.h"
 
 int fact(int n) {
