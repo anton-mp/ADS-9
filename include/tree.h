@@ -47,7 +47,9 @@ class PMTree {
     Node* getRootNode() {
         return root;
     }
-    void createBufferPerms(Node* root, std::vector<char>& buffer, std::vector<std::vector<char>>& result) {
+    void createBufferPerms(Node* root, std::vector<char>& buffer, std::vector<std::vector<char>>& result, int num = 0) {
+        if (result.size() == num && num > 0)
+            return;
         if (root == nullptr)
             return;
         if (root->children.empty()) {
@@ -55,8 +57,10 @@ class PMTree {
             return;
         }
         for (auto i : root->children) {
+            if (result.size() == num && num > 0)
+                return;
             buffer.push_back(i->data);
-            createBufferPerms(i, buffer, result);
+            createBufferPerms(i, buffer, result, num);
             buffer.pop_back();
         }
     }
@@ -65,6 +69,7 @@ class PMTree {
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
 std::vector<char> getPerm1(PMTree& tree, int num);
 std::vector<char> getPerm2(PMTree& tree, int num);
+
 
 #endif  // INCLUDE_TREE_H_
 
